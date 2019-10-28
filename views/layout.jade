@@ -1,0 +1,61 @@
+doctype html
+html
+  block vars
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css')
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js")
+    script(src="https://code.jquery.com/jquery-1.12.4.js")
+    script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.js")
+    script(src='/javascripts/bootstrap.js')
+    script(src='/javascripts/scripts.js')
+
+  body.bkimg_cover
+    nav.navbar.navbar-expand-md.navbar-dark.bg-success.txt-white
+      a.navbar-brand(href='/') Teretana
+      button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarsExampleDefault', aria-controls='navbarsExampleDefault', aria-expanded='false', aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      #navbarsExampleDefault.collapse.navbar-collapse
+        if logged_in
+          if role == 'Admin'
+            ul.navbar-nav.mr-auto
+              li.nav-item.active
+                a.nav-link(href='/memberships')
+                  | Članarine
+              li.nav-item.active
+                a.nav-link(href='/users').
+                    Članovi
+              li.nav-item.active
+                a.nav-link(href='/settings').
+                    Postavke
+            ul.navbar-nav.ml-auto
+              li.nav-item.active
+                a.nav-link(href='/users/logout')
+                  | Odjava
+          else
+            ul.navbar-nav.mr-auto
+              li.nav-item.active
+                a.nav-link(href='/memberships')
+                  | Moje članarine
+              li.nav-item.active
+                a.nav-link(href='/users/user').
+                    Profil
+            ul.navbar-nav.ml-auto
+              li.nav-item.active
+                a.nav-link(href='/users/logout')
+                  | Odjava
+        else
+          ul.navbar-nav.mr-auto
+            li.nav-item.active
+              a.nav-link(href='/users/login')
+                | Prijava
+            li.nav-item.active
+              a.nav-link(href='/users/register').
+                  Registracija
+    main.col-md-16
+      .container
+        p
+        block content
+        br

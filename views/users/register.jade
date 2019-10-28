@@ -1,0 +1,37 @@
+extends ../layout
+
+block vars
+  - var logged_in = logged
+  - var role = user_role
+  - var title = "Registracija"
+  
+block content
+  .main.container
+    .row
+      .col-md-6.col-md-offset-3.mx-auto.text-center.jumbotron.bkg-white06.py-3
+        h3.display-4.m-b-2 Registracija
+
+        // register form
+        form(method='POST' action='/users/register')
+          if errors
+            - each error, i in errors
+              p.alert.alert-danger= error.msg
+          div.form-group
+            label(for='name') Ime:
+            if name
+              input#name.form-control(type='text', placeholder='Ime i prezime' name='name' value=name)
+            else
+              input#name.form-control(type='text', placeholder='Ime i prezime' name='name')
+          div.form-group
+            label(for='email') Email:
+            if email
+              input#email.form-control(type='email', placeholder='name@domain.com' name='email' value=email)
+            else
+              input#email.form-control(type='email', placeholder='name@domain.com' name='email')
+          div.form-group
+            label(for='pw') Lozinka:
+            input#pw.form-control(type='password' name='password')
+          div.form-group
+            label(for='pw2') Potvrdi lozinku:
+            input#pw2.form-control(type='password' name='confirmPassword')
+          button.btn.btn-success(type='submit') Registriraj se

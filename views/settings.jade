@@ -1,0 +1,31 @@
+extends layout
+
+block vars
+  - var logged_in = logged
+  - var role = user_role
+  
+block content
+  div.container.jumbotron.bkg-green04.txt-white
+    h1 Teretana
+    p.lead Postavke
+  
+  form#formNumbers(action="/",method='post',name='updateMembership',enctype='application/x-www-form-urlencoded')
+    div.row.text-center
+      div.col-lg-3.col-md-3.col-sm-3.col-xs-12.form-group
+        div.stats
+          input.form-control.counter-count(type='number', name='trenutno' min=0, value= '#{gym != null ? gym.trenutno : 0}')
+          p.captions.lead Trenutno u teretani
+      div.col-lg-3.col-md-3.col-sm-3.col-xs-12
+        div.stats
+          input.form-control.counter-count(type='number', name='kapacitet' min=0, value= '#{gym != null ? gym.kapacitet : 0}')
+          p.captions.lead Kapacitet
+      div.col-lg-3.col-md-3.col-sm-3.col-xs-12
+        div.stats
+          input.form-control.counter-count(type='number', name='clanovi' min=0, value= '#{gym != null ? gym.clanovi : 0}')
+          p.captions.lead Upisanih članova
+      div.col-lg-3.col-md-3.col-sm-3.col-xs-12
+        div.stats
+          input.form-control.counter-count(type='number', name='clanarine' min=0, value= '#{gym != null ? gym.clanarine : 0}')
+          p.captions.lead Realiziranih članarina
+    input(type='hidden',value= gym!=null ? "PUT":"POST",name='_method')
+    button#btnSubmit.btn.btn-success.d-block.w-25.mx-auto(type="submit") Spremi

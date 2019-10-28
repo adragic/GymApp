@@ -1,0 +1,24 @@
+extends ../layout
+
+block vars
+  - var logged_in = logged
+  
+block content
+  .main.container
+    .row
+      .col-md-6.col-md-offset-3.mx-auto.text-center.jumbotron.bkg-white06.py-3
+        h3.display-4.m-b-2 Prijava
+        if success_msg!=''
+          p.alert.alert-success= success_msg
+        if error_msg!=''
+          p.alert.alert-danger= error_msg
+        if error!=''
+          p.alert.alert-danger= error
+        form(method='POST' action='/users/login')
+          div.form-group
+            label(for='email') Email
+            input.form-control(type='text' id='email' placeholder='email' name='email')
+          div.form-group
+            label(for='password') Lozinka
+            input.form-control(type='password' id='password' placeholder='password' name='password')
+          button.btn.btn-success(type='submit') Prijavi se

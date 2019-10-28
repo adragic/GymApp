@@ -1,0 +1,42 @@
+extends ../layout
+
+block vars
+  - var logged_in = true
+  - var role = user_role
+  - var count = 0
+  
+block content
+    p.lead #{username}
+    h3.txt-white.text-center.display-4 Članovi
+    table.table.col-md-14.jumbotron.bkg-white06
+        thead.thead-success.bg-success
+            tr
+                th Ime i prezime
+                th Email
+                th Datum registriranja
+                th Broj članarina
+                th
+                th
+                th 
+        tbody
+            - each user, i in users
+              - count = 0
+              - each membership, m in memberships
+                if user._id == membership.korisnik
+                    - count = count + 1
+              tr.border-top
+                td= user.name
+                td= user.email
+                td= moment(user.date).format("DD/MM/YYYY")
+                td= count
+                td
+                    a(href='/users/user/#{user._id}/edit').text-success Uredi
+                td
+                    a(href='/users/user/#{user._id}/memberships').text-success Prikaži članarine
+                td
+                    form(action='/users/user/#{user._id}/edit',method='post',enctype='application/x-www-form-urlencoded')
+                        input(type='hidden',value='DELETE',name='_method')
+                        button.btn.btn-warning(type='submit').
+                            Obriši
+
+    a(href='users/register').button.btn.btn-success.d-block.w-25.mx-auto Dodaj člana

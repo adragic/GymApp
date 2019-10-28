@@ -1,0 +1,43 @@
+extends ../layout
+
+block vars
+	- var logged_in = true
+	- var role = user_role
+  
+block content
+	h3.txt-white.display-4.text-center.
+		Uredi članarinu
+	form#formEditmembership(action='/memberships/#{membership._id}/edit',method='post',name='updateMembership',enctype='application/x-www-form-urlencoded').col-md-8.mx-auto.jumbotron.bkg-white06.py-3
+		.form-group
+			label(for='inputN') Ime i prezime: 
+			input#inputN.form-control(type="text", value='#{user.name}', name="name" readonly)
+		.form-group
+			label(for='inputE') Email: 
+			input#inputE.form-control(type="text", value='#{user.email}', name="email" readonly)
+		.form-group
+			label(for='inputK') Kategorija: 
+			input#inputK.form-control(type="text", value='#{membership.kategorija}', name="kategorija" required)
+		.form-group
+			label(for='inputV') Vrsta: 
+			input#inputV.form-control(type="text", value='#{membership.vrsta}', name="vrsta" required)
+		.form-group
+			label(for='inputO') Opis: 
+			input#inputO.form-control(type="text", value='#{membership.opis}', name="opis")
+		.form-group
+			label(for='inputC') Cijena: 
+			input#inputC.form-control(type="number", value='#{membership.cijena}', name="cijena" required)
+		.form-group
+			label(for='inputDatumUplate') Datum uplate: 
+			input#inputDatumUplate.form-control(type="date", name="datum_uplate", value='#{moment(membership.datum_uplate).format("DD/MM/YYYY")}')
+		.form-group
+			label(for='inputDatumPocetka') Datum početka: 
+			input#inputDatumPocetka.form-control(type="date", name="datum_pocetka", value='#{moment(membership.datum_pocetka).format("DD/MM/YYYY")}' required)
+		.form-group
+			label(for='inputDatumIsteka') Datum isteka: 
+			input#inputDatumIsteka.form-control(type="date", name="datum_isteka", value='#{moment(membership.datum_isteka).format("DD/MM/YYYY")}' required)
+		.form-group
+			label(for='inputNaziv') Status: 
+			input#inputNaziv.form-control(type="text", value='#{membership.status}', name="status" required)
+		input(type='hidden',value='PUT',name='_method')
+		button#btnSubmit.btn.btn-success.d-block.w-25.mx-auto(type="submit") Spremi
+		

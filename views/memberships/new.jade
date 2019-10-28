@@ -1,0 +1,41 @@
+extends ../layout
+
+block vars
+	- var logged_in = true
+	- var role = user_role
+	
+block content
+	h3.txt-white.text-center.display-4 Dodaj članarinu
+	form#formAddmembership(name="addmembership",method="post",action="/memberships").col-md-8.mx-auto.jumbotron.bkg-white06.py-3
+		if error_user_msg
+			p.alert.alert-danger= error_user_msg
+				a(href='/users/register').d-block.text-danger Registriraj korisnika
+		.form-group
+			label(for='inputE') Email: 
+			input#inputE.form-control(type="text", placeholder="Email člana", value="#{email != null ? email : ''}", name="email" required)
+		.form-group
+			label(for='inputK') Kategorija: 
+			input#inputK.form-control(type="text", placeholder="Kategorija članarine (obična/studentska/...)", name="kategorija" required)
+		.form-group
+			label(for='inputV') Vrsta: 
+			input#inputV.form-control(type="text", placeholder="Vrsta članarine (godišnja/mjesečna/...)", name="vrsta" required)
+		.form-group
+			label(for='inputO') Opis: 
+			input#inputO.form-control(type="text", placeholder="Opis članarine (2xtjedno/3xtjedno/grupni/...)", name="opis")
+		.form-group
+			label(for='inputCijena') Cijena: 
+			input#inputCijena.form-control(type="number", name="cijena" required)
+		.form-group
+			label(for='inputDatumUplate') Datum uplate: 
+			input#inputDatumUplate.form-control(type="date", name="datum_uplate", value='#{moment().format("DD/MM/YYYY")}')
+		.form-group
+			label(for='inputDatumPocetka') Datum početka: 
+			input#inputDatumPocetka.form-control(type="date", name="datum_pocetka", value='#{moment().format("DD/MM/YYYY")}' required)
+		.form-group
+			label(for='inputDatumIsteka') Datum isteka: 
+			input#inputDatumIsteka.form-control(type="date", name="datum_isteka" required)
+		.form-group
+			label(for='inputNaziv') Status: 
+			input#inputNaziv.form-control(type="text", placeholder="Status članarine (aktivna/istekla/zamrznuta)", name="status" required)		
+		button#btnSubmit.btn.btn-success.d-block.w-25.mx-auto(type="submit") Dodaj
+	

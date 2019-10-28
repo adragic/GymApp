@@ -1,0 +1,35 @@
+extends ../layout
+
+block vars
+    - var logged_in = true
+    - var role = user.role
+  
+block content
+    p.lead #{username}
+    h3.txt-white.text-center.display-4 Članarine: #{user.name}
+    table.table.col-md-12.jumbotron.bkg-white06
+        thead.thead-success.bg-success
+            tr
+                th.text-center Vrsta članarine
+                th.text-center Kategorija
+                th.text-center Opis
+                th.text-center Cijena
+                th.text-center Datum uplate
+                th.text-center Datum početka
+                th.text-center Datum isteka
+                th.text-center Status
+        tbody
+            - each membership, i in memberships
+                tr.border-top
+                    td= membership.vrsta
+                    td= membership.kategorija
+                    td= membership.opis
+                    td= membership.cijena
+                    td= moment(membership.datum_uplate).format("DD/MM/YYYY")
+                    td= moment(membership.datum_pocetka).format("DD/MM/YYYY")
+                    td= moment(membership.datum_isteka).format("DD/MM/YYYY")
+                    td= membership.status
+                    
+    if memberships.length==0
+        p Čini se da još nemaš nijednu uplaćenu članarinu :(
+            

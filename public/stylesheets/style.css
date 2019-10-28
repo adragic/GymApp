@@ -1,0 +1,97 @@
+
+a {
+  color: #00B7FF;
+}
+
+.bkimg {
+  background: url(/images/cover_op06.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.bkimg_cover {
+  background: url(/images/cover_op06.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.img1 {
+  height: 400px;
+  background: url(/images/dumbells.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-x: center;
+  background-position-y: center;
+}
+
+.img2 {
+  height: 400px;
+  background: url(/images/modern.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-x: center;
+  background-position-y: center;
+}
+
+.img3 {
+  height: 400px;
+  background: url(/images/trainer.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-x: center;
+  background-position-y: center;
+}
+
+.op06 {
+  opacity: 0.6;
+}
+
+.txt-white {
+  color: white;
+}
+
+.bkg-white06 {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.bkg-green04 {
+  background: rgba(92,184,92,0.4);
+}
+
+.bkg-orange {
+  background-color: #ff7d42;
+}
+
+.counter
+{
+    text-align: center;
+}
+.stats
+{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.counter-count
+{
+    font-size: 24px;
+    background-color: #ff7d42;
+    border-radius: 50%;
+    position: relative;
+    color: #ffffff;
+    text-align: center;
+    line-height: 92px;
+    width: 92px;
+    height: 92px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    display: inline-block;
+}
+
+.captions
+{
+    font-size: 24px;
+    color: #000000;
+    line-height: 34px;
+}

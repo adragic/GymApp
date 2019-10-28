@@ -1,0 +1,57 @@
+extends ../layout
+
+block vars
+    - var logged_in = true
+    - var role = user_role
+  
+block content
+    p.lead #{username}
+    h3.txt-white.text-center.display-4
+        if users.length > 1
+            Članarine
+        else
+            Članarine: #{users[0].name}
+    table.table.col-md-14.jumbotron.bkg-white06
+        thead.thead-success.bg-success
+            tr
+                th.text-center Ime i prezime
+                th.text-center Email
+                th.text-center Vrsta članarine
+                th.text-center Kategorija
+                th.text-center Opis
+                th.text-center Cijena
+                th.text-center Datum uplate
+                th.text-center Datum početka
+                th.text-center Datum isteka
+                th.text-center Status
+                th
+                th
+        tbody
+            - each membership, i in memberships
+                - each user, u in users
+                    if user._id == membership.korisnik
+                        tr.border-top
+                            td= user.name
+                            td= user.email
+                            td= membership.vrsta
+                            td= membership.kategorija
+                            td= membership.opis
+                            td= membership.cijena
+                            td= moment(membership.datum_uplate).format("DD/MM/YY")
+                            td= moment(membership.datum_pocetka).format("DD/MM/YY")
+                            td= moment(membership.datum_isteka).format("DD/MM/YY")
+                            td= membership.status
+                            td
+                                a(href='/memberships/#{membership._id}/edit').text-success Uredi
+                            td
+                                form(action='/memberships/#{membership._id}/edit',method='post',enctype='application/x-www-form-urlencoded')
+                                    input(type='hidden',value='DELETE',name='_method')
+                                    button.btn.btn-warning(type='submit').
+                                        Obriši
+    if users.length > 1
+        a(href='/memberships/new').button.btn.btn-success.d-block.w-25.mx-auto Dodaj članarinu
+    else
+        form(name="passUserInfoForm" method="GET" action="/memberships/new" enctype='application/x-www-form-urlencoded')
+            input(type='hidden', name='email', value='#{users[0].email}')
+            button.btn.btn-success.d-block.w-25.mx-auto(type='submit') Dodaj članarinu
+

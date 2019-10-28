@@ -1,0 +1,56 @@
+extends layout-welcome
+
+block vars
+  - var logged_in = logged
+  - var role = user_role
+  
+block content
+  div.container.jumbotron.bkg-green04.txt-white
+    h1= title
+    p.lead Dobrodošli u teretanu #{title}
+  
+  div.row.text-center
+    div.col-lg-3.col-md-3.col-sm-3.col-xs-12
+      div.stats
+        p.counter-count #{gym != null ? gym.trenutno : 0}
+        p.captions.lead Trenutno u teretani
+    div.col-lg-3.col-md-3.col-sm-3.col-xs-12
+      div.stats
+        p.counter-count #{gym != null ? gym.kapacitet : 0}
+        p.captions.lead Kapacitet
+    div.col-lg-3.col-md-3.col-sm-3.col-xs-12
+      div.stats
+        p.counter-count #{gym != null ? gym.clanovi : 0}
+        p.captions.lead Upisanih članova
+    div.col-lg-3.col-md-3.col-sm-3.col-xs-12
+      div.stats
+        p.counter-count #{gym != null ? gym.clanarine : 0}
+        p.captions.lead Realiziranih članarina
+
+  .row
+    .col-md-6.mr-auto
+      div.img2.jumbotron
+    .col-md-4.text-right
+      .row
+        h2.txt-white.float-right.display-4 Moderan i velik prostor
+      .row
+        p.lead.float-right Korisnici imaju na raspolaganju veliki kapacitet teretane
+    
+
+  .row
+    .col-md-4
+      .row
+        h2.float-left.display-4 Najnovija oprema
+      .row
+        p.lead.float-left Teretana nudi pristup modernoj opremi, držeći korak s trendovima u fitness svijetu.
+    .col-md-6.ml-auto
+      div.img1.jumbotron
+
+  .row
+    .col-md-6.mr-auto
+      div.img3.jumbotron
+    .col-md-4.text-right
+      .row
+        h2.float-right.display-4 Stručni treneri i djelatnici
+      .row
+        p.lead.float-right Tu su za Vas kako bi vam pomogli i olakšali Vaš trening u Teretani
